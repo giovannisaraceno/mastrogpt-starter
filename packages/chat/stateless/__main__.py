@@ -1,10 +1,10 @@
 #--kind python:default
 #--web true
-#TODO:E2.1
-#--...
-#--...
-#END TODO
+#--param OLLAMA_HOST $OLLAMA_HOST
+#--param AUTH $AUTH
 
 import stateless
+import os 
+
 def main(args):
   return { "body": stateless.stateless(args) }

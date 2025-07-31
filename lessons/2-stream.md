@@ -246,6 +246,7 @@ res = req.post(url, json=msg)
 lines = res.iter_lines()
 for line in lines:
   print(line)
+
 ```
 
 `b'{"model":"llama3.1:8b","response":"R","done":false}'
@@ -269,6 +270,7 @@ Test:
 ```python
 for line in count_to_zero(10):
   print(line, end='')
+
 ```
 
 ---
