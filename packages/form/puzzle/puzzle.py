@@ -19,10 +19,37 @@ def extract_fen(out):
     fen = m.group(0)
   return fen
 
+FORM = [
+  {
+    "name": "queen",
+    "label": "With a Queen",
+    "type": "checkbox",    
+  },
+  {
+      "name": "rook",
+      "label": "With a Rook",
+      "type": "checkbox",      
+  },
+  {
+    "name": "knight",
+    "label": "With a Knight",
+    "type": "checkbox",    
+  },
+  {
+      "name": "bishop",
+      "label": "With a Bishop",
+      "type": "checkbox"
+  },
+]
+
 def puzzle(args):
-  out = "If you want to see a chess puzzle, type 'puzzle'. To display a fen position, type 'fen <fen string>'."
   inp = args.get("input", "")
   res = {}
+
+  if inp == "":
+     out = "If you want to see a chess puzzle, type 'puzzle'. To display a fen position, type 'fen <fen string>'."
+     res['form'] = FORM
+     
   if inp == "puzzle":
     inp = "generate a chess puzzle in FEN format"
     out = chat(args, inp)
@@ -32,11 +59,36 @@ def puzzle(args):
        res['chess'] = fen
     else:
       out = "Bad FEN position."
+  elif type(inp) is dict and "form" in inp:
+      data = inp["form"]      
+      for field in data.keys():
+        print(field, data[field])      
+      
+      inp = "Generate a chess puzzle in FEN format"
+      if data.get("rook"):
+        inp += " with a rook"
+      if data.get("bishop"):
+        inp += " with a bishop"
+      if data.get("queen"):
+        inp += " with a queen"
+      if data.get("knight"):
+        inp += " with a knight"
+
+      out = chat(args, inp)
+      fen = extract_fen(out)
+      if fen:
+        print(fen)
+        res['chess'] = fen
+        res['form'] = FORM 
+      else:
+        out = "Bad FEN position."
+  elif inp == "puzzle":
+    res['form'] = FORM  
   elif inp.startswith("fen"):
     fen = extract_fen(inp)
     if fen:
        out = "Here you go."
-       res['chess'] = fen
+       res['chess'] = fen  
   elif inp != "":
     out = chat(args, inp)
     fen = extract_fen(out)
