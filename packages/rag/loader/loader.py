@@ -1,10 +1,7 @@
 import vdb
-import loader_img
-
 
 USAGE = f"""Welcome to the Vector DB Loader.
 Write text to insert in the DB. 
-Use `img` to load a sample of images
 Use `@[<coll>]` to select/create a collection and show the collections.
 Use `*<string>` to vector search the <string>  in the DB.
 Use `#<limit>`  to change the limit of searches.
@@ -30,12 +27,8 @@ def loader(args):
   db = vdb.VectorDB(args, collection)
   inp = str(args.get('input', ""))
 
-  #check if load images
-  if inp.startswith("img"):
-    out = loader_img.load(args, collection)
-
   # select collection
-  elif inp.startswith("@"):
+  if inp.startswith("@"):
     out = ""
     if len(inp) > 1:
        collection = inp[1:]
