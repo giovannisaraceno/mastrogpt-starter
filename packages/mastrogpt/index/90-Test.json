@@ -12,6 +12,10 @@
     "url": "gsaraceno/reverse"
    },
    {
+    "name": "Loader Image",
+    "url": "gsaraceno/loader_img"
+   },
+   {
     "name": "Rag Image",
     "url": "gsaraceno/rag_img"
    }

@@ -12,7 +12,7 @@ FORM = [
   },
 ]
 
-def loader(args):
+def loader_img(args):
   res = {}
   out = USAGE
   inp = args.get("input", "")
