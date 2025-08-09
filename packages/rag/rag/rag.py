@@ -42,9 +42,9 @@ def parse_query(content):
 
     if collection != "":
       res["collection"]  = collection
-
+      
     res["content"] = content.strip()
-    
+
     return res
 
 

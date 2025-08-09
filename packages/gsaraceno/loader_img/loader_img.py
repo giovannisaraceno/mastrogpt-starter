@@ -23,7 +23,7 @@ def loader_img(args):
     db = vdb.VectorDB(args, "cats")
     vis = vision.Vision(args)
     description = vis.decode(img)
-    out += description
+    out = description
     db_res = db.insert(description)
     out += "\n".join([str(x) for x in db_res.get("ids", [])])
     out += "\n"

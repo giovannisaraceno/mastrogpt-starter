@@ -2,8 +2,8 @@ import os, pymilvus
 from pymilvus import MilvusClient, Function, FunctionType, DataType
 import embed
 
-COLLECTION="test"
-LIMIT=5
+COLLECTION="cats"
+LIMIT=10
 
 vdb_db = None
 
